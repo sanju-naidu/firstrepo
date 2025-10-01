@@ -1,42 +1,20 @@
 pipeline {
     agent any
-
     stages {
-        stage('Checkout') {
-            steps {
-                git branch: 'main', url: 'https://github.com/your-username/your-repo.git'
-            }
-        }
-
         stage('Build') {
             steps {
-                echo 'Building the project...'
-                sh 'mvn clean package'   // for Java + Maven projects
+                echo 'Building...'
             }
         }
-
         stage('Test') {
             steps {
-                echo 'Running tests...'
-                sh 'mvn test'
+                echo 'Testing...'
             }
         }
-
         stage('Deploy') {
             steps {
-                echo 'Deploying application...'
-                // Example deploy step
-                sh 'scp target/*.jar user@server:/opt/apps/'
+                echo 'Deploying...'
             }
-        }
-    }
-
-    post {
-        success {
-            echo 'Pipeline completed successfully ✅'
-        }
-        failure {
-            echo 'Pipeline failed ❌'
         }
     }
 }
